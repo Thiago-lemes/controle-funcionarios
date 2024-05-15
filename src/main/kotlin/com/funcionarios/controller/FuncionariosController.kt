@@ -2,11 +2,11 @@ package com.funcionarios.controller
 
 import com.funcionarios.DTO.FuncionarioDTO
 import com.funcionarios.service.FuncionariosService
+import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.util.*
-
 
 @RestController
 @RequestMapping("/funcionarios")
@@ -28,9 +28,9 @@ class FuncionariosController(private val service: FuncionariosService) {
     }
 
     @PutMapping("/update")
-    fun update(@RequestBody @Validated dto: FuncionarioDTO): ResponseEntity<Unit> {
+    fun update(@RequestBody @Validated dto: FuncionarioDTO): ResponseEntity<FuncionarioDTO> {
         service.update(dto)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.status(CREATED).build()
     }
 
     @DeleteMapping(value = ["/{id}"])

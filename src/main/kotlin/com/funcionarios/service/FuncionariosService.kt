@@ -11,7 +11,7 @@ import kotlin.NoSuchElementException
 
 @Service
 class FuncionariosService(private val repository: FuncionariosRepository) {
-    private val mapper: ModelMapper = ModelMapper() // Injeção do ModelMapper
+    private val mapper: ModelMapper = ModelMapper()
 
     @Transactional
     fun create(dto: FuncionarioDTO) {
@@ -50,7 +50,6 @@ class FuncionariosService(private val repository: FuncionariosRepository) {
             Optional.empty()
         }
     }
-
 
     fun update(dto: FuncionarioDTO) {
         if (repository.findById(dto.id).isEmpty || repository.findById(dto.id).equals(0)) {
